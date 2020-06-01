@@ -37,7 +37,7 @@ class App extends Component{
       adjective: "",
       verbTwo: "",
       adjectiveTwo: "",
-      nounFour: "",
+      nounFour: "testing",
       madLib:"",
     })
   }
