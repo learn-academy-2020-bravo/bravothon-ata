@@ -1,40 +1,33 @@
 import React, { Component } from 'react'
+import SubmitForm from './components/SubmitForm'
 import './App.css'
 
 class App extends Component{
-  constructor(props){
-    super(props)
-    this.state = {
-      photographer: "Yes",
-      balloons: 0
-    }
+  state = {
+    tasks: ['Photographer', 'Cake', 'DJ']
+  };
+
+  handleSubmit = task => {
+    this.setState({tasks: [...this.state.tasks, task]});
+  }
+  
+  handleDelete = (index) => {
+    const newArr = [...this.state.tasks];
+    newArr.splice(index, 1);
+    this.setState({tasks: newArr});
   }
 
-  addBalloons = () => {
-    this.setState({balloons: this.state.balloons + 1})
-  }
-
-  render(){
+  render() {
     return(
-      <React.Fragment>
-        <p>Photographer: { this.state.photographer } </p>
-        <p>DJ</p>
-        <p>Balloons: {this.state.balloons}
-        <button onclick="addBalloons">add balloons</button>
-        </p>
-
-        <p>People</p>
-        <p>Cake</p>
-        <p>Entrees</p>
-        <p>Snacks</p>
-        <p>Microphone</p>
-        <p>Beverages</p>
-        <p>Bartender</p>
-
-
-
-      </React.Fragment>
-    )
-  }
+      <div className='wrapper'>
+        <div className='card frame'>
+          <Header numTodos={this.state.tasks.length} />
+          <TodoList tasks={this.state.tasks} onDelete={this.handleDelete} />
+          <SubmitForm onFormSubmit={this.handleSubmit} />
+        </div>
+      </div>
+    );
+  } 
 }
+
 export default App
